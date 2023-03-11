@@ -5,5 +5,8 @@ RUN apt update
 RUN apt upgrade -y
 RUN apt install apache2 -y
 RUN apt install mysql-server -y
-# RUN apt install php -y
+RUN rm /var/www/html/index.html
+COPY ./taxservice /var/www/html/
+CMD /usr/sbin/apache2ctl -D FOREGROUND
+RUN apt install php -y
 # RUN systemctl restart apache2
